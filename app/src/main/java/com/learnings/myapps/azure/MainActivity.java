@@ -16,6 +16,7 @@ import com.learnings.myapps.azure.Fragments.BanksFragment;
 import com.learnings.myapps.azure.Fragments.DepositsFragment;
 import com.learnings.myapps.azure.Fragments.OffersFragment;
 import com.learnings.myapps.azure.Fragments.OpenFragment;
+import com.learnings.myapps.azure.Fragments.QuickCalculationFragment;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 
 import java.net.MalformedURLException;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -91,6 +94,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_fourth) {
             OffersFragment offersFragment = new OffersFragment();
             ft.replace(R.id.content_main, offersFragment);
+        } else if (id == R.id.nav_fifth) {
+            QuickCalculationFragment quickCalculationFragment = new QuickCalculationFragment();
+            ft.replace(R.id.content_main, quickCalculationFragment);
         }
         ft.commit();
 

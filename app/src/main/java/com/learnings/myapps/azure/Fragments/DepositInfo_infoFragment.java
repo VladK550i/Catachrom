@@ -30,7 +30,7 @@ public class DepositInfo_infoFragment extends Fragment {
         b_showtaxes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((DepositInfoActivity)getActivity()).ShowTaxes();
+                ((DepositInfoActivity)getActivity()).ReplaceInfoFragment();
             }
         });
         b_editaccount.setOnClickListener(new View.OnClickListener() {

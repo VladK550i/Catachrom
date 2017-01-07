@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.learnings.myapps.azure.R;
 
@@ -24,6 +25,10 @@ public class DepositInfo_taxesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_deposit_info_taxes, container, false);
+
+        Bundle b = getArguments();
+        Toast.makeText(getContext(), b.getString("region"), Toast.LENGTH_SHORT).show();
+
         return v;
     }
 

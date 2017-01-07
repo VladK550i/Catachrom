@@ -20,7 +20,8 @@
         android:progressDrawable="@android:color/transparent"
         android:thumb="@drawable/seek_thumb_normal_a"
         android:thumbOffset="12dp"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:visibility="invisible" />
 
     <TextView
         android:layout_width="match_parent"
@@ -44,7 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView8"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:paddingTop="15dp">
 
         <TextView
             android:text="...Deposit name..."

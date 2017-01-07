@@ -1,6 +1,5 @@
 package com.learnings.myapps.azure.Fragments;
 
-import android.app.admin.DevicePolicyManager;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
@@ -8,26 +7,21 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.learnings.myapps.azure.DataTransfer;
 import com.learnings.myapps.azure.Entity.Account;
-import com.learnings.myapps.azure.Entity.Bank;
 import com.learnings.myapps.azure.Entity.BankOffer;
 import com.learnings.myapps.azure.Fragments.CustomProgressBar.CustomSeekBar;
 import com.learnings.myapps.azure.Fragments.CustomProgressBar.ProgressItem;
-import com.learnings.myapps.azure.MainActivity;
 import com.learnings.myapps.azure.R;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import static com.learnings.myapps.azure.Fragments.DataContainer.mClient;
@@ -38,7 +32,6 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
     DepositInfo_infoFragment infoFragment;
     Account current_account;
     BankOffer current_offer;
-    DataTransfer transfer;
     private CustomSeekBar seekbar;
     private float totalSpan = 100;
     private float blueSpan = 80;
@@ -70,15 +63,19 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 int cur_pro = seekBar.getProgress();
-                float blue = progressItemList.get(0).progressItemPercentage;
-                float green = progressItemList.get(1).progressItemPercentage;
+                float blue;
+                float green;
+                if (progressItemList != null) {
+                    blue = progressItemList.get(0).progressItemPercentage;
+                    green = progressItemList.get(1).progressItemPercentage;
 
-                if (cur_pro <= blue)
-                    tv_partial_info.setText("Start funds: " + blueSpan);
-                else if (cur_pro > blue && cur_pro < green + blue)
-                    tv_partial_info.setText("Interest funds: " + greenSpan);
-                else
-                    tv_partial_info.setText("Taxes: " + yellowSpan);
+                    if (cur_pro <= blue)
+                        tv_partial_info.setText("Start funds: " + blueSpan);
+                    else if (cur_pro > blue && cur_pro < green + blue)
+                        tv_partial_info.setText("Interest funds: " + greenSpan);
+                    else
+                        tv_partial_info.setText("Taxes: " + yellowSpan);
+                }
             }
 
             @Override
@@ -151,6 +148,9 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
 
         seekbar.initData(progressItemList);
         seekbar.invalidate();
+
+        if (seekbar.getVisibility() == View.INVISIBLE)
+            seekbar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -186,8 +186,25 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
         initDataToSeekbar();
     }
 
-    public void ShowTaxes() {
+    public void ReplaceInfoFragment() {
+        DepositInfo_inputFragment inputFragment = new DepositInfo_inputFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.content_main, inputFragment, "taxes");
+        ft.commit();
+
         Toast.makeText(this, "Show taxes", Toast.LENGTH_SHORT).show();
+    }
+
+    public void ShowTaxes(String current_region) {
+        DepositInfo_taxesFragment taxesFragment = new DepositInfo_taxesFragment();
+        Bundle b = new Bundle();
+        taxesFragment.setArguments(b);
+        b.putString("region", current_region);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.content_main, taxesFragment, "taxes");
+        ft.commit();
     }
 
     public void EditAccount() {
