@@ -15,7 +15,7 @@
         android:label="@string/title_activity_deposit_info"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainScreenActivity"></activity>
+        <activity android:name=".MainScreenActivity" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">
@@ -28,12 +28,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RegistrationActivity"
             android:label="@string/title_activity_registration"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Fragments.DepositInfoActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Fragments.DepositInfoActivity" />
+        <activity android:name=".Fragments.BankInfoActivity"></activity>
     </application>
 
 </manifest>

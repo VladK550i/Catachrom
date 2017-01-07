@@ -1,12 +1,14 @@
 package com.learnings.myapps.azure.Fragments;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -53,6 +55,15 @@ public class BanksFragment extends Fragment implements DataTransfer {
                 new int[] {android.R.id.text1,android.R.id.text2});
         lv.setAdapter(adapter);
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getContext(), BankInfoActivity.class);
+                intent.putExtra("id", banks.get(i).id);
+                startActivity(intent);
+            }
+        });
+
         SelectBanks(v);
         return v;
     }
@@ -68,7 +79,7 @@ public class BanksFragment extends Fragment implements DataTransfer {
                         @Override
                         public void run() {
                             TextView tv = (TextView) v.findViewById(R.id.textView);
-                            tv.setText("You have no banks yet.");
+                            tv.setText("We have no banks yet.");
                         }
                     };
                     Runnable populatedListRunnable = new Runnable() {
