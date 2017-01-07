@@ -33,8 +33,12 @@
             android:name=".RegistrationActivity"
             android:label="@string/title_activity_registration"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Fragments.DepositInfoActivity" />
-        <activity android:name=".Fragments.BankInfoActivity"></activity>
+        <activity
+            android:name=".Fragments.DepositInfoActivity"
+            android:label="@string/title_activity_depositinfo"/>
+        <activity
+            android:name=".Fragments.BankInfoActivity"
+            android:label="@string/title_activity_bankinfo"/>
     </application>
 
 </manifest>

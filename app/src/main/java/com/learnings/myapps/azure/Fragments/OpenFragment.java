@@ -57,7 +57,7 @@ public class OpenFragment extends Fragment {
 //            e.printStackTrace();
 //        }
 
-
+        getActivity().setTitle("Open a deposit");
 
         final Spinner banks_spinner = (Spinner) v.findViewById(R.id.spinner);
         banks_adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, banks);

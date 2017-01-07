@@ -156,6 +156,8 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
     @Override
     public void ReceiveData(Object data_sent) {
 
+        setTitle("-> " + current_offer.getOfferName());
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
         TextView tv_depositname = (TextView) findViewById(R.id.textView10);
@@ -179,8 +181,16 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
         } catch (Exception e) {
             e.printStackTrace();
         }
-        tv_holder.setText("Holder: " + current_account.getHolderName());
-        tv_notice.setText("Notice: " + current_account.getNotice());
+
+        if (current_account.getHolderName() != null)
+            tv_holder.setText("Holder: " + current_account.getHolderName());
+        else
+            tv_holder.setText("");
+        if (current_account.getNotice() != null)
+            tv_notice.setText("Notice: " + current_account.getNotice());
+        else
+            tv_notice.setText("");
+
 
         //TODO: percent counting logic
         initDataToSeekbar();

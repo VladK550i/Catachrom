@@ -47,6 +47,8 @@ public class BanksFragment extends Fragment implements DataTransfer {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Banks");
+
         View v = inflater.inflate(R.layout.fragment_banks, container, false);
         Toast.makeText(getContext(), "Banks fragment", Toast.LENGTH_SHORT).show();
 

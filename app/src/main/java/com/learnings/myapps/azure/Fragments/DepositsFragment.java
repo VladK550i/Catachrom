@@ -52,6 +52,7 @@ public class DepositsFragment extends Fragment implements DataTransfer {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Deposit manager -> Open a deposit");
         View v = inflater.inflate(R.layout.fragment_deposits, container, false);
         adapter = new SimpleAdapter(getContext(), data, android.R.layout.simple_list_item_2, new String[] {"main", "addit"},
                 new int[] {android.R.id.text1,android.R.id.text2});

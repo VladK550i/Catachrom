@@ -41,5 +41,4 @@ public class DepositInfo_infoFragment extends Fragment {
         });
         return v;
     }
-
 }
