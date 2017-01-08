@@ -34,7 +34,6 @@ import static com.learnings.myapps.azure.Fragments.DataContainer.mClient;
 public class BanksFragment extends Fragment implements DataTransfer {
 
     List<Bank> banks;
-    List<String> banks_namelist;
     List<Map<String, String>> data = new ArrayList<>();
     SimpleAdapter adapter;
     ListView lv;
