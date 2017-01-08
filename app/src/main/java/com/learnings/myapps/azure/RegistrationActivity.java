@@ -139,7 +139,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private boolean isEmailValid(String email) {
 
-        return email.toLowerCase().matches("[a-z][a-z0-9-._]*[a-z0-9]*[@][a-z]+[.][a-z]+");
+        return email.toLowerCase().matches("[a-z][a-z0-9-._]*[a-z0-9]*@[a-z]+[.][a-z]+");
     }
 
     private boolean isPasswordValid(String password) {
