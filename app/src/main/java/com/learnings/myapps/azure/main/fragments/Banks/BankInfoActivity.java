@@ -1,22 +1,18 @@
-package com.learnings.myapps.azure.Fragments;
+package com.learnings.myapps.azure.main.fragments.Banks;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
-import com.learnings.myapps.azure.DataTransfer;
-import com.learnings.myapps.azure.Entity.Account;
-import com.learnings.myapps.azure.Entity.Bank;
-import com.learnings.myapps.azure.Entity.BankOffer;
+import com.learnings.myapps.azure.entity.Bank;
 import com.learnings.myapps.azure.R;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.util.List;
 
-import static com.learnings.myapps.azure.Fragments.DataContainer.mClient;
+import static com.learnings.myapps.azure.main.fragments.DataContainer.mClient;
 
 public class BankInfoActivity extends AppCompatActivity {
 

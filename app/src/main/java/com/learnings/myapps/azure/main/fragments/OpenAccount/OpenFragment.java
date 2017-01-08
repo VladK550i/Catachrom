@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.Fragments;
+package com.learnings.myapps.azure.main.fragments.OpenAccount;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,16 +13,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.learnings.myapps.azure.Entity.Account;
-import com.learnings.myapps.azure.Entity.Bank;
-import com.learnings.myapps.azure.Entity.BankOffer;
+import com.learnings.myapps.azure.entity.Account;
+import com.learnings.myapps.azure.entity.Bank;
+import com.learnings.myapps.azure.entity.BankOffer;
+import com.learnings.myapps.azure.main.fragments.DatePickerFragment;
 import com.learnings.myapps.azure.R;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
 
-import static com.learnings.myapps.azure.Fragments.DataContainer.mClient;
-import static com.learnings.myapps.azure.Fragments.DataContainer.mEmail;
+import static com.learnings.myapps.azure.main.fragments.DataContainer.mClient;
+import static com.learnings.myapps.azure.main.fragments.DataContainer.mEmail;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.Fragments;
+package com.learnings.myapps.azure.main.fragments.Deposits;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -15,10 +15,11 @@ import android.widget.TextView;
 
 import com.learnings.myapps.azure.DataFiller;
 import com.learnings.myapps.azure.DataTransfer;
-import com.learnings.myapps.azure.Entity.Account;
-import com.learnings.myapps.azure.Entity.Bank;
-import com.learnings.myapps.azure.Entity.BankOffer;
-import com.learnings.myapps.azure.MainActivity;
+import com.learnings.myapps.azure.entity.Account;
+import com.learnings.myapps.azure.entity.Bank;
+import com.learnings.myapps.azure.entity.BankOffer;
+import com.learnings.myapps.azure.main.fragments.Deposits.DepositInfo.DepositInfoActivity;
+import com.learnings.myapps.azure.main.MainActivity;
 import com.learnings.myapps.azure.R;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
@@ -30,8 +31,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.learnings.myapps.azure.Fragments.DataContainer.mClient;
-import static com.learnings.myapps.azure.Fragments.DataContainer.mEmail;
+import static com.learnings.myapps.azure.main.fragments.DataContainer.mClient;
+import static com.learnings.myapps.azure.main.fragments.DataContainer.mEmail;
 
 
 public class DepositsFragment extends Fragment implements DataTransfer {

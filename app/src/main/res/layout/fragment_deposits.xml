@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="com.learnings.myapps.azure.Fragments.DepositsFragment">
+    tools:context=".main.fragments.Deposits.DepositsFragment">
 
     <ProgressBar
         android:id="@+id/load_progress"

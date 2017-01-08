@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure;
+package com.learnings.myapps.azure.registration;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -14,7 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import com.learnings.myapps.azure.Entity.User;
+import com.learnings.myapps.azure.entity.User;
+import com.learnings.myapps.azure.R;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 
 import java.net.MalformedURLException;

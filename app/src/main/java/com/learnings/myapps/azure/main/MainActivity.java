@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure;
+package com.learnings.myapps.azure.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,19 +10,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.learnings.myapps.azure.Fragments.BanksFragment;
-import com.learnings.myapps.azure.Fragments.DepositsFragment;
-import com.learnings.myapps.azure.Fragments.OffersFragment;
-import com.learnings.myapps.azure.Fragments.OpenFragment;
-import com.learnings.myapps.azure.Fragments.QuickCalculationFragment;
+import com.learnings.myapps.azure.R;
+import com.learnings.myapps.azure.main.fragments.Banks.BanksFragment;
+import com.learnings.myapps.azure.main.fragments.Deposits.DepositsFragment;
+import com.learnings.myapps.azure.main.fragments.Offers.OffersFragment;
+import com.learnings.myapps.azure.main.fragments.OpenAccount.OpenFragment;
+import com.learnings.myapps.azure.main.fragments.QuickCalculation.QuickCalculationFragment;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 
 import java.net.MalformedURLException;
 
-import static com.learnings.myapps.azure.Fragments.DataContainer.mClient;
-import static com.learnings.myapps.azure.Fragments.DataContainer.mEmail;
+import static com.learnings.myapps.azure.main.fragments.DataContainer.mClient;
+import static com.learnings.myapps.azure.main.fragments.DataContainer.mEmail;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

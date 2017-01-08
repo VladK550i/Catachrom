@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.Entity;
+package com.learnings.myapps.azure.entity;
 
 
 public class Card {

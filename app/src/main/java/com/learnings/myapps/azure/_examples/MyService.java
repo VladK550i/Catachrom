@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure;
+package com.learnings.myapps.azure._examples;
 
 
 import java.util.List;

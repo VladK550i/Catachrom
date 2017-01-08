@@ -1,6 +1,6 @@
 package com.learnings.myapps.azure;
 
-import com.learnings.myapps.azure.Entity.Account;
+import com.learnings.myapps.azure.entity.Account;
 
 import java.util.List;
 

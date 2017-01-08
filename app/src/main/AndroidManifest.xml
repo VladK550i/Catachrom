@@ -15,9 +15,9 @@
         android:label="@string/title_activity_deposit_info"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainScreenActivity" />
+        <activity android:name="._examples.MainScreenActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,18 +26,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".registration.RegistrationActivity"
             android:label="@string/title_activity_registration"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Fragments.DepositInfoActivity"
+            android:name=".main.fragments.Deposits.DepositInfo.DepositInfoActivity"
             android:label="@string/title_activity_depositinfo"/>
         <activity
-            android:name=".Fragments.BankInfoActivity"
+            android:name=".main.fragments.Banks.BankInfoActivity"
             android:label="@string/title_activity_bankinfo"/>
     </application>
 

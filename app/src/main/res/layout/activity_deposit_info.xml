@@ -9,9 +9,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.learnings.myapps.azure.Fragments.DepositInfoActivity">
+    tools:context=".main.fragments.Deposits.DepositInfo.DepositInfoActivity">
 
-    <com.learnings.myapps.azure.Fragments.CustomProgressBar.CustomSeekBar
+    <com.learnings.myapps.azure.main.fragments.Deposits.CustomProgressBar.CustomSeekBar
         android:id="@+id/customSeekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

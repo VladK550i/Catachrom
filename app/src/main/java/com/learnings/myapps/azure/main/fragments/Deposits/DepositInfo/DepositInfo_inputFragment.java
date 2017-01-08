@@ -1,21 +1,18 @@
-package com.learnings.myapps.azure.Fragments;
+package com.learnings.myapps.azure.main.fragments.Deposits.DepositInfo;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.SimpleArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 
 import com.learnings.myapps.azure.R;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

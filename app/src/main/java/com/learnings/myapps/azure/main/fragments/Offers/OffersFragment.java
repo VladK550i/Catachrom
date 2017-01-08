@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.Fragments;
+package com.learnings.myapps.azure.main.fragments.Offers;
 
 
 import android.os.Bundle;

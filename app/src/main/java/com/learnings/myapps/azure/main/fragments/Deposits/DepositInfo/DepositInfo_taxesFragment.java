@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.Fragments;
+package com.learnings.myapps.azure.main.fragments.Deposits.DepositInfo;
 
 
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure;
+package com.learnings.myapps.azure._examples;
 
 public class ToDoItem {
     public String Id;

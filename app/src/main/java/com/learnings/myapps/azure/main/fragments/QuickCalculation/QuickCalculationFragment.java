@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.Fragments;
+package com.learnings.myapps.azure.main.fragments.QuickCalculation;
 
 
 import android.os.Bundle;

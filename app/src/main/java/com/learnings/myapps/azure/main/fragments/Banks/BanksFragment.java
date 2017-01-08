@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.Fragments;
+package com.learnings.myapps.azure.main.fragments.Banks;
 
 
 import android.content.Intent;
@@ -9,15 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.learnings.myapps.azure.DataTransfer;
-import com.learnings.myapps.azure.Entity.Account;
-import com.learnings.myapps.azure.Entity.Bank;
+import com.learnings.myapps.azure.entity.Bank;
 import com.learnings.myapps.azure.R;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
@@ -26,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.learnings.myapps.azure.Fragments.DataContainer.mClient;
+import static com.learnings.myapps.azure.main.fragments.DataContainer.mClient;
 
 /**
  * A simple {@link Fragment} subclass.

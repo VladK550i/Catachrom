@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.Fragments;
+package com.learnings.myapps.azure.main.fragments.Deposits.DepositInfo;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,10 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.learnings.myapps.azure.DataTransfer;
-import com.learnings.myapps.azure.Entity.Account;
-import com.learnings.myapps.azure.Entity.BankOffer;
-import com.learnings.myapps.azure.Fragments.CustomProgressBar.CustomSeekBar;
-import com.learnings.myapps.azure.Fragments.CustomProgressBar.ProgressItem;
+import com.learnings.myapps.azure.entity.Account;
+import com.learnings.myapps.azure.entity.BankOffer;
+import com.learnings.myapps.azure.main.fragments.Deposits.CustomProgressBar.CustomSeekBar;
+import com.learnings.myapps.azure.main.fragments.Deposits.CustomProgressBar.ProgressItem;
 import com.learnings.myapps.azure.R;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static com.learnings.myapps.azure.Fragments.DataContainer.mClient;
+import static com.learnings.myapps.azure.main.fragments.DataContainer.mClient;
 
 
 public class DepositInfoActivity extends AppCompatActivity implements DataTransfer{
