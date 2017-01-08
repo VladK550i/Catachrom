@@ -6,7 +6,6 @@ import android.annotation.TargetApi;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.learnings.myapps.azure.Entity.User;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.MobileServiceException;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -75,8 +73,8 @@ public class RegistrationActivity extends AppCompatActivity {
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        final String email = mEmailView.getText().toString();
+        final String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -106,11 +104,36 @@ public class RegistrationActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mRegTask = new UserRegistrationTask(email, password);
-            mRegTask.execute((Void) null);
+            //Vle 08.01.2017 RegFix01 -->
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                    final List<User> users;
+                    try {
+                        users = mClient.getTable(User.class).where().field("Login").eq(email).execute().get(); //.and().field("Password").eq(password).execute().get();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(!users.isEmpty()) {
+                                    mEmailView.setError(getString(R.string.error_exist_login));
+                                    mEmailView.requestFocus();
+                                }
+                                else {
+                                    showProgress(true);
+                                    mRegTask = new UserRegistrationTask(email, password);
+                                    mRegTask.execute((Void) null);
+                                }
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+            }.execute((Void)null);
+//VLE regFix <--
         }
     }
 
@@ -161,6 +184,8 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private boolean InsertIntoTodo(String login, String password) {
+
+
         User item = new User();
         item.setLogin(login);
         item.setPassword(password);
@@ -172,7 +197,7 @@ public class RegistrationActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-            return true;
+            //return true;
         }
         return false;
     }
@@ -190,6 +215,7 @@ public class RegistrationActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
+
             return InsertIntoTodo(mEmail, mPassword);
         }
 
@@ -201,8 +227,7 @@ public class RegistrationActivity extends AppCompatActivity {
             if (!success) {
                 mEmailView.setError(getString(R.string.error_registration_failed));
                 mEmailView.requestFocus();
-            }
-            else {
+            } else {
                 Toast.makeText(RegistrationActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                 finish();
             }

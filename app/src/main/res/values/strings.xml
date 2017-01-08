@@ -12,6 +12,7 @@
     <string name="error_incorrect_password">Incorrect login/password</string>
     <string name="error_registration_failed">Registration failed</string>
     <string name="error_field_required">This field is required</string>
+    <string name="error_exist_login">This email is already exist</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
