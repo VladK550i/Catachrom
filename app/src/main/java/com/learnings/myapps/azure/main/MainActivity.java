@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.learnings.myapps.azure.R;
+import com.learnings.myapps.azure.login.LoginActivity;
 import com.learnings.myapps.azure.main.fragments.banks.BanksFragment;
 import com.learnings.myapps.azure.main.fragments.deposits.DepositsFragment;
 import com.learnings.myapps.azure.main.fragments.offers.OffersFragment;
@@ -102,6 +103,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_fifth) {
             QuickCalculationFragment quickCalculationFragment = new QuickCalculationFragment();
             ft.replace(R.id.content_main, quickCalculationFragment);
+        } else if (id == R.id.nav_sixth) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            this.finish();
         }
         ft.commit();
 
