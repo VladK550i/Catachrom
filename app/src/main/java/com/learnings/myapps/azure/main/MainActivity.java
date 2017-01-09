@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.learnings.myapps.azure.R;
 import com.learnings.myapps.azure.main.fragments.banks.BanksFragment;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity
         if (intent.hasExtra("email"))
             mEmail = intent.getStringExtra("email");
 
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        TextView tv_email = (TextView) navigationView.getHeaderView(0).findViewById(R.id.textView);
+        tv_email.setText(mEmail);
 
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
     }
@@ -103,5 +108,9 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void RefreshAccounts() {
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
     }
 }

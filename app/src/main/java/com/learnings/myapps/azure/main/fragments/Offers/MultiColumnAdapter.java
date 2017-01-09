@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.learnings.myapps.azure.R;
 
 import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_BANK_NAME;
+import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_CAPITALIZATION;
+import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_MINSTART;
 import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_OFFER_NAME;
 import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_CURRENCY;
 import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_IRATE;
@@ -27,6 +29,8 @@ public class MultiColumnAdapter extends BaseAdapter{
     TextView txtThird;
     TextView txtFourth;
     TextView txtFifth;
+    TextView txtSixth;
+    TextView txtSeventh;
     public MultiColumnAdapter(Activity activity, ArrayList<HashMap<String, String>> list){
         super();
         this.activity=activity;
@@ -63,18 +67,23 @@ public class MultiColumnAdapter extends BaseAdapter{
 
             txtFirst=(TextView) convertView.findViewById(R.id.offer_name);
             txtSecond=(TextView) convertView.findViewById(R.id.bank_name);
-            txtThird=(TextView) convertView.findViewById(R.id.currency);
-            txtFourth=(TextView) convertView.findViewById(R.id.irate);
-            txtFifth=(TextView) convertView.findViewById(R.id.periodicity);
+            txtThird=(TextView) convertView.findViewById(R.id.minstart);
+            txtFourth=(TextView) convertView.findViewById(R.id.currency);
+            txtFifth=(TextView) convertView.findViewById(R.id.irate);
+            txtSixth=(TextView) convertView.findViewById(R.id.periodicity);
+            txtSeventh=(TextView) convertView.findViewById(R.id.capitalization);
+
 
         }
 
         HashMap<String, String> map=list.get(position);
         txtFirst.setText(map.get(COLUMN_OFFER_NAME));
         txtSecond.setText(map.get(COLUMN_BANK_NAME));
-        txtThird.setText(map.get(COLUMN_CURRENCY));
-        txtFourth.setText(map.get(COLUMN_IRATE));
-        txtFifth.setText(map.get(COLUMN_PERIODICITY));
+        txtThird.setText(map.get(COLUMN_MINSTART));
+        txtFourth.setText(map.get(COLUMN_CURRENCY));
+        txtFifth.setText(map.get(COLUMN_IRATE));
+        txtSixth.setText(map.get(COLUMN_PERIODICITY));
+        txtSeventh.setText(map.get(COLUMN_CAPITALIZATION));
 
         return convertView;
     }

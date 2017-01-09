@@ -27,16 +27,23 @@ public class DepositInfo_infoFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_deposit_info_info, container, false);
         Button b_showtaxes = (Button) v.findViewById(R.id.button9);
         Button b_editaccount = (Button) v.findViewById(R.id.button8);
+        Button b_delete = (Button) v.findViewById(R.id.button7);
         b_showtaxes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((DepositInfoActivity)getActivity()).ReplaceInfoFragment();
+                ((DepositInfoActivity)getActivity()).ShowInputFragment();
             }
         });
         b_editaccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((DepositInfoActivity)getActivity()).EditAccount();
+            }
+        });
+        b_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((DepositInfoActivity)getActivity()).DeleteAccount();
             }
         });
         return v;

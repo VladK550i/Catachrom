@@ -25,24 +25,24 @@ public class Account {
         BankRefRecID = bankRefRecID;
     }
 
-    public Integer getStartFunds() {
+    public float getStartFunds() {
         return StartFunds;
     }
-    public void setStartFunds(Integer startFunds) {
+    public void setStartFunds(float startFunds) {
         StartFunds = startFunds;
     }
 
-    public Integer getAccumulatedFunds() {
+    public float getAccumulatedFunds() {
         return AccumulatedFunds;
     }
-    public void setAccumulatedFunds(Integer accumulatedFunds) {
+    public void setAccumulatedFunds(float accumulatedFunds) {
         AccumulatedFunds = accumulatedFunds;
     }
 
-    public Integer getOtherFunds() {
+    public float getOtherFunds() {
         return OtherFunds;
     }
-    public void setOtherFunds(Integer otherFunds) {
+    public void setOtherFunds(float otherFunds) {
         OtherFunds = otherFunds;
     }
 
@@ -109,9 +109,9 @@ public class Account {
     private int DepositTermMonth;
     private String BankRefRecID;        //id БАНКА
     private String BankOfferRefRecId;    //id ОФФЕРА
-    private Integer StartFunds;         //начальный капитал
-    private Integer AccumulatedFunds;   //итоговый капитал
-    private Integer OtherFunds;  //добавочная сумма
+    private float StartFunds;         //начальный капитал
+    private float AccumulatedFunds;   //итоговый капитал
+    private float OtherFunds;  //добавочная сумма
     //private String AccountNumber;       //номер счёта
     private String HolderName;
     private String Notice;

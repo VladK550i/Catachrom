@@ -19,6 +19,13 @@
         android:text="Edit Deposit account..."
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button8" />
+        android:id="@+id/button8"
+        android:visibility="gone" />
+
+    <Button
+        android:text="Delete this account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button7" />
 
 </LinearLayout>

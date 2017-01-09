@@ -56,7 +56,7 @@ public class DepositInfo_inputFragment extends Fragment {
             public void onClick(View view) {
 
                 if (current_region != null) {
-                    ((DepositInfoActivity)getActivity()).ShowTaxes(current_region);
+                    ((DepositInfoActivity)getActivity()).ShowTaxesFragment(current_region);
                 }
             }
         });

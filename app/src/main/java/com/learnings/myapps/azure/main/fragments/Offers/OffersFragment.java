@@ -23,6 +23,8 @@ import java.util.List;
 
 import static com.learnings.myapps.azure.main.fragments.DataContainer.mClient;
 import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_BANK_NAME;
+import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_CAPITALIZATION;
+import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_MINSTART;
 import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_OFFER_NAME;
 import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_CURRENCY;
 import static com.learnings.myapps.azure.main.fragments.offers.Constants.COLUMN_IRATE;
@@ -95,6 +97,15 @@ public class OffersFragment extends Fragment {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    HashMap<String,String> init = new HashMap<>();
+                                    init.put(COLUMN_OFFER_NAME, "Offer");
+                                    init.put(COLUMN_BANK_NAME, "Bank");
+                                    init.put(COLUMN_MINSTART, "Min start");
+                                    init.put(COLUMN_CURRENCY, "Currency");
+                                    init.put(COLUMN_IRATE, "%");
+                                    init.put(COLUMN_PERIODICITY, "Period");
+                                    init.put(COLUMN_CAPITALIZATION, "Capitalization");
+                                    list.add(init);
                                     for (BankOffer offer: oresponse) {
                                         String cur_bank_name = "";
                                         for (Bank b : bresponse) {
@@ -104,9 +115,11 @@ public class OffersFragment extends Fragment {
                                         HashMap<String,String> temp = new HashMap<>();
                                         temp.put(COLUMN_OFFER_NAME, offer.getOfferName());
                                         temp.put(COLUMN_BANK_NAME, cur_bank_name);
+                                        temp.put(COLUMN_MINSTART, String.valueOf(offer.getMinStartFunds()));
                                         temp.put(COLUMN_CURRENCY, offer.getCurrency());
                                         temp.put(COLUMN_IRATE, String.valueOf(((int) offer.getInterestRate())));
                                         temp.put(COLUMN_PERIODICITY, String.valueOf(offer.getInterestPeriodicity()));
+                                        temp.put(COLUMN_CAPITALIZATION, offer.getCapitalize());
                                         list.add(temp);
                                     }
                                     getActivity().runOnUiThread(new Runnable() {

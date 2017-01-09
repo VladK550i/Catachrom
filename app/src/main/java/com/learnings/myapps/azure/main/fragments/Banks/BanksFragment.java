@@ -45,9 +45,7 @@ public class BanksFragment extends Fragment implements DataTransfer {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().setTitle("Banks");
-
         View v = inflater.inflate(R.layout.fragment_banks, container, false);
-        Toast.makeText(getContext(), "Banks fragment", Toast.LENGTH_SHORT).show();
 
         lv = (ListView) v.findViewById(R.id.listView);
         adapter = new SimpleAdapter(getContext(), data, android.R.layout.simple_list_item_2, new String[] {"main", "addit"},

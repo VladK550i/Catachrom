@@ -33,6 +33,16 @@ import static com.learnings.myapps.azure.main.fragments.processingModules.Deposi
 
 public class DepositInfoActivity extends AppCompatActivity implements DataTransfer{
 
+    public Account getCurrent_account() {
+        return current_account;
+    }
+    public BankOffer getCurrent_offer() {
+        return current_offer;
+    }
+    public Bank getCurrent_bank() {
+        return current_bank;
+    }
+
     DepositInfo_infoFragment infoFragment;
     private Account current_account;
     private BankOffer current_offer;
@@ -41,7 +51,16 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
     private float totalSpan = 100;
     private float blueSpan = 80;
     private float greenSpan = 15;
-    private float yellowSpan = totalSpan - blueSpan - greenSpan;
+    private float yellowSpan;
+    public void setYellowSpan(float new_yellowSpan) {
+
+        this.greenSpan = (yellowSpan < 1? greenSpan - new_yellowSpan
+                                          : greenSpan + yellowSpan - new_yellowSpan);
+        this.yellowSpan = new_yellowSpan;
+        float temp_resultsumm = totalSpan - yellowSpan;
+        tv_total.setText("Result summ: " + temp_resultsumm);
+        initDataToSeekbar();
+    }
     private ArrayList<ProgressItem> progressItemList;
     TextView tv_total;
 
@@ -71,15 +90,19 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
                 int cur_pro = seekBar.getProgress();
                 float blue;
                 float green;
+                float yellow;
                 if (progressItemList != null) {
                     blue = progressItemList.get(0).progressItemPercentage;
                     green = progressItemList.get(1).progressItemPercentage;
+
+                    yellow = (progressItemList.size() > 2 ? progressItemList.get(2).progressItemPercentage
+                                                         : -1);
 
                     if (cur_pro <= blue)
                         tv_partial_info.setText("Start funds: " + blueSpan);
                     else if (cur_pro > blue && cur_pro < green + blue)
                         tv_partial_info.setText("Interest funds: " + greenSpan);
-                    else
+                    else if (yellow != -1)
                         tv_partial_info.setText("Taxes: " + yellowSpan);
                 }
             }
@@ -156,11 +179,12 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
         mProgressItem.color = R.color.green;
         progressItemList.add(mProgressItem);
         // yellow span
-        mProgressItem = new ProgressItem();
-        mProgressItem.progressItemPercentage = 100*yellowSpan / totalSpan;
-        mProgressItem.color = R.color.yellow;
-        progressItemList.add(mProgressItem);
-
+        if (yellowSpan >= 0) {
+            mProgressItem = new ProgressItem();
+            mProgressItem.progressItemPercentage = 100 * yellowSpan / totalSpan;
+            mProgressItem.color = R.color.yellow;
+            progressItemList.add(mProgressItem);
+        }
         seekbar.initData(progressItemList);
         seekbar.invalidate();
 
@@ -225,35 +249,46 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
                                                                 current_account.getDepositTermMonth()*30,
                                                                 current_offer.getInterestPeriodicity());
         blueSpan = current_account.getStartFunds();
-        greenSpan = indexes[PROFIT];
+        greenSpan = indexes[PROFIT]; current_account.setOtherFunds(indexes[PROFIT]);
+        yellowSpan = -1;
         totalSpan = indexes[FULLSUMM];
-        yellowSpan = 0;
 
-        tv_total.setText("Result summ: " + totalSpan);
+
+        tv_total.setText("Result summ: " + indexes[FULLSUMM]);
     }
 
-    public void ReplaceInfoFragment() {
+    public void ShowInputFragment() {
         DepositInfo_inputFragment inputFragment = new DepositInfo_inputFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.content_main, inputFragment, "taxes");
+            ft.addToBackStack(null);
+            ft.replace(R.id.content_main, inputFragment, "input");
         ft.commit();
-
-        Toast.makeText(this, "Show taxes", Toast.LENGTH_SHORT).show();
     }
 
-    public void ShowTaxes(String current_region) {
+    public void ShowTaxesFragment(String current_region) {
         DepositInfo_taxesFragment taxesFragment = new DepositInfo_taxesFragment();
         Bundle b = new Bundle();
         taxesFragment.setArguments(b);
         b.putString("region", current_region);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+            ft.addToBackStack(null);
             ft.replace(R.id.content_main, taxesFragment, "taxes");
         ft.commit();
     }
 
     public void EditAccount() {
         Toast.makeText(this, "Edit Account", Toast.LENGTH_SHORT).show();
+    }
+
+    public void DeleteAccount() {
+        if (current_account != null) {
+            final MobileServiceTable atable = mClient.getTable(Account.class);
+            atable.delete(current_account.id);
+            this.finish();
+
+        } else
+            Toast.makeText(this, "Please, wait while loading...", Toast.LENGTH_SHORT).show();
     }
 }

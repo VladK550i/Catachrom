@@ -62,6 +62,13 @@ public class DepositsFragment extends Fragment implements DataTransfer {
         return v;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!data.isEmpty())
+            ((MainActivity)getActivity()).RefreshAccounts();
+    }
+
     private void SelectAccounts(final View v) {
         final MobileServiceTable table = mClient.getTable(Account.class);
         final Button b = (Button) v.findViewById(R.id.button3);
@@ -148,7 +155,7 @@ public class DepositsFragment extends Fragment implements DataTransfer {
                         + end_calendar.get(Calendar.YEAR);
 
                 Map<String, String> datum = new HashMap<>(2);
-                datum.put("main", l.get(0) + " from " + l.get(1));
+                datum.put("main", "\"" + l.get(0) + "\" \nfrom " + l.get(1));
                 datum.put("addit", "Summ: " + curr_acc.getStartFunds()
                         + "; Ends: " + end_string);
                 data.add(datum);

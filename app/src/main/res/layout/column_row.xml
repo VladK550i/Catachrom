@@ -1,43 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:scrollbarAlwaysDrawHorizontalTrack="false"
+    android:scrollbars="horizontal">
 
     <TextView
         android:id="@+id/offer_name"
         android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_weight="1"
         android:textStyle="bold"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="20dp"
+        android:layout_width="wrap_content"
+        android:maxWidth="70dp"
+        android:nestedScrollingEnabled="false"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:width="130dp" />
 
     <TextView
         android:id="@+id/bank_name"
         android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_weight="1"
         android:textStyle="italic"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="20dp"
+        android:layout_width="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:width="110dp"
+        android:paddingLeft="5dp" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:id="@+id/minstart"
+        android:paddingBottom="20dp"
+        android:layout_width="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:width="70dp"
+        android:paddingLeft="5dp" />
 
     <TextView
         android:id="@+id/currency"
         android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_weight="0.5"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="20dp"
+        android:layout_width="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:width="70dp"
+        android:paddingLeft="5dp" />
 
     <TextView
         android:id="@+id/irate"
         android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_weight="0.4"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="20dp"
+        android:layout_width="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:width="30dp"
+        android:paddingLeft="5dp" />
 
     <TextView
         android:id="@+id/periodicity"
         android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="20dp"
+        android:layout_width="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:width="70dp"
+        android:paddingLeft="5dp" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:id="@+id/capitalization"
+        android:paddingBottom="20dp"
+        android:layout_width="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:width="100dp"
+        android:paddingLeft="5dp" />
 
 </LinearLayout>

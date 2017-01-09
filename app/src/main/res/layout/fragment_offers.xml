@@ -5,13 +5,30 @@
     android:orientation="vertical"
     tools:context=".main.fragments.offers.OffersFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView" />
-    <ListView
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:id="@+id/lv_offers"
-        android:layout_height="wrap_content"
-        android:scrollbars="horizontal|vertical" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_width="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:textAlignment="gravity" />
+
+            <ListView
+                android:id="@+id/lv_offers"
+                android:layout_height="match_parent"
+                android:scrollbars="horizontal|vertical"
+                android:layout_width="match_parent"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:scrollingCache="true"
+                android:paddingLeft="16dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
 </LinearLayout>

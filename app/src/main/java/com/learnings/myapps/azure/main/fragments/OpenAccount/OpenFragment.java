@@ -66,6 +66,7 @@ public class OpenFragment extends Fragment {
         banks_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cur_offer_id = "";
                 String cur_bank = banks_adapter.getItem(banks_spinner.getSelectedItemPosition());
                 GetBankID(cur_bank);
 
@@ -118,7 +119,6 @@ public class OpenFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Calendar c = Calendar.getInstance();
-
                 Date date_from;
                 int term;
                 int start;
@@ -253,11 +253,11 @@ public class OpenFragment extends Fragment {
                                     offer_names.add(offer.getOfferName());
                                 }
                                 offers_adapter.notifyDataSetChanged();
+                                cur_offer_id = response.get(0).id;
                                 offers = response;
                             }
                             else {
                                 Toast.makeText(getContext(), "Unfortunately at the moment this bank has no offers of deposits", Toast.LENGTH_SHORT).show();
-                                cur_offer_id = "";
                                 offer_names.clear();
                                 offers_adapter.notifyDataSetChanged();
                             }
