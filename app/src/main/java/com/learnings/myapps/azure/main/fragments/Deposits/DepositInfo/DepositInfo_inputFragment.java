@@ -64,4 +64,12 @@ public class DepositInfo_inputFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        DepositInfoActivity activity = ((DepositInfoActivity)getActivity());
+        if (activity.getYellowSpan() != -1)
+            activity.HideTax();
+    }
 }
