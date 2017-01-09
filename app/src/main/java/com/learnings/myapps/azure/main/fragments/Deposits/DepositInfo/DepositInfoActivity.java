@@ -209,9 +209,11 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
         TextView tv_dateto = (TextView) findViewById(R.id.textView13);
         TextView tv_holder = (TextView) findViewById(R.id.textView14);
         TextView tv_notice = (TextView) findViewById(R.id.textView15);
+        TextView tv_capitalization = (TextView) findViewById(R.id.textView32);
         tv_accountid.setText("Account ID: " + current_account.id);
         tv_depositname.setText("Deposit name: " + current_offer.getOfferName());
         tv_interestrate.setText("Interest rate: " + current_offer.getInterestRate());
+        tv_capitalization.setText("Capitalization: " + current_offer.getCapitalize());
         String datefrom;
         String dateto;
         Calendar c = Calendar.getInstance();
