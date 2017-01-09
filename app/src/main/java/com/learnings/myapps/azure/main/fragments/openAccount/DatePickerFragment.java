@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.main.fragments;
+package com.learnings.myapps.azure.main.fragments.openAccount;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;

@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.main.fragments.Banks;
+package com.learnings.myapps.azure.main.fragments.banks;
 
 
 import android.content.Intent;

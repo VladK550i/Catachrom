@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.main.fragments.Deposits;
+package com.learnings.myapps.azure.main.fragments.deposits;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -18,12 +18,13 @@ import com.learnings.myapps.azure.DataTransfer;
 import com.learnings.myapps.azure.entity.Account;
 import com.learnings.myapps.azure.entity.Bank;
 import com.learnings.myapps.azure.entity.BankOffer;
-import com.learnings.myapps.azure.main.fragments.Deposits.DepositInfo.DepositInfoActivity;
+import com.learnings.myapps.azure.main.fragments.deposits.depositInfo.DepositInfoActivity;
 import com.learnings.myapps.azure.main.MainActivity;
 import com.learnings.myapps.azure.R;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -53,7 +54,7 @@ public class DepositsFragment extends Fragment implements DataTransfer {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("Deposit manager -> Open a deposit");
+        getActivity().setTitle("Opened deposits");
         View v = inflater.inflate(R.layout.fragment_deposits, container, false);
         adapter = new SimpleAdapter(getContext(), data, android.R.layout.simple_list_item_2, new String[] {"main", "addit"},
                 new int[] {android.R.id.text1,android.R.id.text2});
@@ -109,11 +110,11 @@ public class DepositsFragment extends Fragment implements DataTransfer {
                                     startActivity(intent);
                                 }
                             });
-
                             data.clear();
                             for (Account account : response) {
                                 FillAdapter(account);
                             }
+
                             progressView.setVisibility(View.GONE);
                             introForm.setVisibility(View.VISIBLE);
                         }
@@ -137,7 +138,7 @@ public class DepositsFragment extends Fragment implements DataTransfer {
     private void FillAdapter(final Account account) {
         filler = new DataFiller() {
             @Override
-            public void FillIn(List l, Account curr_acc) {
+            public void FillIn(final List l, final Account curr_acc) {
                 Date start_date = curr_acc.getDateFrom();
                 Calendar end_calendar = GregorianCalendar.getInstance();
                 end_calendar.setTime(start_date);
@@ -151,13 +152,9 @@ public class DepositsFragment extends Fragment implements DataTransfer {
                 datum.put("addit", "Summ: " + curr_acc.getStartFunds()
                         + "; Ends: " + end_string);
                 data.add(datum);
-                ids.add(account.id);
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+                ids.add(curr_acc.id);
+
+                adapter.notifyDataSetChanged();
             }
         };
         final String id_offer = account.getBankOfferRefRecId();
@@ -186,9 +183,13 @@ public class DepositsFragment extends Fragment implements DataTransfer {
                     else
                         bank_name = "<null>";
 
-                    List<String> l = new ArrayList<>(2);
-                    l.add(offer_name); l.add(bank_name);
-                    filler.FillIn(l, account);
+                    final List<String> l = Arrays.asList(offer_name, bank_name);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            filler.FillIn(l, account);
+                        }
+                    });
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -81,10 +81,10 @@ public class Account {
         Notice = notice;
     }
 
-    public double getIncomingTax() {
+    public float getIncomingTax() {
         return IncomingTax;
     }
-    public void setIncomingTax(double incomingTax) {
+    public void setIncomingTax(float incomingTax) {
         IncomingTax = incomingTax;
     }
 
@@ -115,6 +115,6 @@ public class Account {
     //private String AccountNumber;       //номер счёта
     private String HolderName;
     private String Notice;
-    private double IncomingTax;
+    private float IncomingTax;
 
 }

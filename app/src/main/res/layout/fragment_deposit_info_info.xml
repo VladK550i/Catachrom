@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".main.fragments.Deposits.DepositInfo.DepositInfo_infoFragment">
+    tools:context=".main.fragments.deposits.depositInfo.DepositInfo_infoFragment">
 
     <Button
         android:text="Show taxes..."

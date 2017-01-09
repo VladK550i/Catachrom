@@ -34,11 +34,12 @@
             android:label="@string/title_activity_registration"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".main.fragments.Deposits.DepositInfo.DepositInfoActivity"
-            android:label="@string/title_activity_depositinfo"/>
+            android:name=".main.fragments.deposits.depositInfo.DepositInfoActivity"
+            android:label="@string/title_activity_depositinfo" />
         <activity
-            android:name=".main.fragments.Banks.BankInfoActivity"
-            android:label="@string/title_activity_bankinfo"/>
+            android:name=".main.fragments.banks.BankInfoActivity"
+            android:label="@string/title_activity_bankinfo" />
+        <activity android:name=".main.fragments.offers.offerInfo.OfferInfoActivity"></activity>
     </application>
 
 </manifest>

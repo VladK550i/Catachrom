@@ -40,24 +40,24 @@ public class BankOffer {
         this.withPartialCashOut = withPartialCashOut;
     }
 
-    public Date getActiveFrom() {
-        return ActiveFrom;
-    }
-    public void setActiveFrom(Date activeFrom) {
-        ActiveFrom = activeFrom;
-    }
+//    public Date getActiveFrom() {
+//        return ActiveFrom;
+//    }
+//    public void setActiveFrom(Date activeFrom) {
+//        ActiveFrom = activeFrom;
+//    }
+//
+//    public Date getActiveTo() {
+//        return ActiveTo;
+//    }
+//    public void setActiveTo(Date activeTo) {
+//        ActiveTo = activeTo;
+//    }
 
-    public Date getActiveTo() {
-        return ActiveTo;
-    }
-    public void setActiveTo(Date activeTo) {
-        ActiveTo = activeTo;
-    }
-
-    public double getInterestRate() {
+    public float getInterestRate() {
         return InterestRate;
     }
-    public void setInterestRate(double interestRate) {
+    public void setInterestRate(float interestRate) {
         InterestRate = interestRate;
     }
 
@@ -68,10 +68,10 @@ public class BankOffer {
         InterestPeriodicity = interestPeriodicity;
     }
 
-    public double getEarlInterestRate() {
+    public float getEarlInterestRate() {
         return EarlInterestRate;
     }
-    public void setEarlInterestRate(double earlInterestRate) {
+    public void setEarlInterestRate(float earlInterestRate) {
         EarlInterestRate = earlInterestRate;
     }
 
@@ -89,6 +89,13 @@ public class BankOffer {
         EarlyTerminationTerm = earlyTerminationTerm;
     }
 
+    public int getMinStartFunds() {
+        return MinStartFunds;
+    }
+    public void setMinStartFunds(int minStartFunds) {
+        MinStartFunds = minStartFunds;
+    }
+
 
     public String id;
     private String BankRefRecId;
@@ -97,11 +104,12 @@ public class BankOffer {
     private String Capitalize; //enum
     private boolean withReplenishment;
     private boolean withPartialCashOut;
-    private Date ActiveFrom;
-    private Date ActiveTo;
-    private double InterestRate;
     private String InterestPeriodicity; //enum
-    private double EarlInterestRate;
+    //private Date ActiveFrom;
+    //private Date ActiveTo;
+    private int MinStartFunds;
+    private float InterestRate;
+    private float EarlInterestRate;
     private int EarlyTerminationTerm;
 
 }

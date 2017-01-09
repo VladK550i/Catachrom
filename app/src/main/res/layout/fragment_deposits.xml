@@ -1,9 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".main.fragments.Deposits.DepositsFragment">
+    tools:context=".main.fragments.deposits.DepositsFragment">
 
     <ProgressBar
         android:id="@+id/load_progress"
@@ -14,16 +14,12 @@
         android:visibility="visible"
         android:layout_gravity="center_horizontal" />
 
-    <ScrollView
-        android:id="@+id/intro_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/intro_form"
+            android:visibility="gone" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -41,10 +37,9 @@
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/lv"
                 android:visibility="visible" />
         </LinearLayout>
-    </ScrollView>
 
 </LinearLayout>

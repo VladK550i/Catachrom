@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.main.fragments.Deposits.DepositInfo;
+package com.learnings.myapps.azure.main.fragments.deposits.depositInfo;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,10 +13,12 @@ import android.widget.Toast;
 
 import com.learnings.myapps.azure.DataTransfer;
 import com.learnings.myapps.azure.entity.Account;
+import com.learnings.myapps.azure.entity.Bank;
 import com.learnings.myapps.azure.entity.BankOffer;
-import com.learnings.myapps.azure.main.fragments.Deposits.CustomProgressBar.CustomSeekBar;
-import com.learnings.myapps.azure.main.fragments.Deposits.CustomProgressBar.ProgressItem;
+import com.learnings.myapps.azure.main.fragments.deposits.customProgressBar.CustomSeekBar;
+import com.learnings.myapps.azure.main.fragments.deposits.customProgressBar.ProgressItem;
 import com.learnings.myapps.azure.R;
+import com.learnings.myapps.azure.main.fragments.processingModules.DepositProcess;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 
 import java.text.SimpleDateFormat;
@@ -25,19 +27,24 @@ import java.util.Calendar;
 import java.util.List;
 
 import static com.learnings.myapps.azure.main.fragments.DataContainer.mClient;
+import static com.learnings.myapps.azure.main.fragments.processingModules.DepositProcess.FULLSUMM;
+import static com.learnings.myapps.azure.main.fragments.processingModules.DepositProcess.PROFIT;
 
 
 public class DepositInfoActivity extends AppCompatActivity implements DataTransfer{
 
     DepositInfo_infoFragment infoFragment;
-    Account current_account;
-    BankOffer current_offer;
+    private Account current_account;
+    private BankOffer current_offer;
+    private Bank current_bank;
     private CustomSeekBar seekbar;
     private float totalSpan = 100;
     private float blueSpan = 80;
     private float greenSpan = 15;
     private float yellowSpan = totalSpan - blueSpan - greenSpan;
     private ArrayList<ProgressItem> progressItemList;
+    TextView tv_total;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +62,7 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
         GetAccountAndOfferById(acc_id);
 
         final TextView tv_partial_info = (TextView) findViewById(R.id.textView8);
-        TextView tv_total = (TextView) findViewById(R.id.textView9);
-        tv_total.setText("Result summ: " + totalSpan);
+        tv_total = (TextView) findViewById(R.id.textView9);
 
         seekbar = (CustomSeekBar) findViewById(R.id.customSeekBar);
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -93,6 +99,7 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
     private void GetAccountAndOfferById(final String acc_id) {
         final MobileServiceTable atable = mClient.getTable(Account.class);
         final MobileServiceTable otable = mClient.getTable(BankOffer.class);
+        final MobileServiceTable btable = mClient.getTable(Bank.class);
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -107,17 +114,25 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
                                 .field("id")
                                 .eq(aresponse.get(0).getBankOfferRefRecId()).execute().get();
 
-                        if (oresponse.size() != 1 || aresponse.size() != 1)
+                        if (oresponse.size() != 1)
                             throw new Exception("A response returned more or less than 1 value");
-                        else
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    current_account = aresponse.get(0);
-                                    current_offer = oresponse.get(0);
-                                    ReceiveData(null);
-                                }
-                            });
+                        else {
+                            final List<Bank> bresponse = (List) btable.where().field("id").eq(oresponse.get(0).getBankRefRecId())
+                                    .execute().get();
+                            if (bresponse.size() != 1)
+                                throw new Exception("A response returned more or less than 1 value");
+                            else
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        current_account = aresponse.get(0);
+                                        current_offer = oresponse.get(0);
+                                        current_bank = bresponse.get(0);
+                                        ReceiveData(null);
+                                    }
+                                });
+                        }
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -193,9 +208,28 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
         else
             tv_notice.setText("");
 
+        CalculatePercents();
 
-        //TODO: percent counting logic
         initDataToSeekbar();
+    }
+
+    private void CalculatePercents() {
+        Float[] indexes;
+        if (current_offer.getCapitalize().equals("no"))
+            indexes = DepositProcess.GetSimpleAccomulated(current_account.getStartFunds(),
+                                                          current_offer.getInterestRate(),
+                                                          current_account.getDepositTermMonth()*30);
+        else
+            indexes = DepositProcess.GetComplexAccomulated(current_account.getStartFunds(),
+                                                                current_offer.getInterestRate(),
+                                                                current_account.getDepositTermMonth()*30,
+                                                                current_offer.getInterestPeriodicity());
+        blueSpan = current_account.getStartFunds();
+        greenSpan = indexes[PROFIT];
+        totalSpan = indexes[FULLSUMM];
+        yellowSpan = 0;
+
+        tv_total.setText("Result summ: " + totalSpan);
     }
 
     public void ReplaceInfoFragment() {

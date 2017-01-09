@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.main.fragments.Banks;
+package com.learnings.myapps.azure.main.fragments.banks;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -44,14 +44,13 @@ public class BankInfoActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 cur_bank = bresponse.get(0);
+                                setTitle(cur_bank.getBankName());
 
-                                TextView tv_bankname = (TextView) findViewById(R.id.textView17);
                                 TextView tv_bank_description = (TextView) findViewById(R.id.textView18);
                                 TextView tv_deposit_sum = (TextView) findViewById(R.id.textView19);
                                 TextView tv_credit_sum = (TextView) findViewById(R.id.textView20);
                                 TextView tv_liquid_active = (TextView) findViewById(R.id.textView21);
                                 TextView tv_authorized_capital = (TextView) findViewById(R.id.textView22);
-                                tv_bankname.setText(cur_bank.getBankName());
                                 tv_bank_description.setText(cur_bank.getBankDescription());
                                 tv_deposit_sum.setText("Deposit summ:" + cur_bank.getLastQuartalDepositSum());
                                 tv_credit_sum.setText("Credit summ:" + cur_bank.getLastQuartalCreditSum());

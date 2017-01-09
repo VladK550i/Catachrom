@@ -17,7 +17,7 @@
         completions."
     </string>
     <string name="title_activity_main">Deposit manager</string>
-    <string name="title_activity_registration">Deposit manager -> Registration</string>
+    <string name="title_activity_registration"> -> Registration</string>
     <string name="title_activity_deposit_info">Deposit info&#8230;</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

@@ -12,11 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.learnings.myapps.azure.R;
-import com.learnings.myapps.azure.main.fragments.Banks.BanksFragment;
-import com.learnings.myapps.azure.main.fragments.Deposits.DepositsFragment;
-import com.learnings.myapps.azure.main.fragments.Offers.OffersFragment;
-import com.learnings.myapps.azure.main.fragments.OpenAccount.OpenFragment;
-import com.learnings.myapps.azure.main.fragments.QuickCalculation.QuickCalculationFragment;
+import com.learnings.myapps.azure.main.fragments.banks.BanksFragment;
+import com.learnings.myapps.azure.main.fragments.deposits.DepositsFragment;
+import com.learnings.myapps.azure.main.fragments.offers.OffersFragment;
+import com.learnings.myapps.azure.main.fragments.openAccount.OpenFragment;
+import com.learnings.myapps.azure.main.fragments.quickCalculation.QuickCalculationFragment;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 
 import java.net.MalformedURLException;

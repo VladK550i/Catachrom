@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.main.fragments.QuickCalculation;
+package com.learnings.myapps.azure.main.fragments.quickCalculation;
 
 
 import android.os.Bundle;
@@ -21,7 +21,7 @@ public class QuickCalculationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("Deposit manager -> Quick calculation");
+        getActivity().setTitle("Quick calculation");
         View v = inflater.inflate(R.layout.fragment_quick_calculation, container, false);
         return v;
     }
