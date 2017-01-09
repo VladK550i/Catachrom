@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.main.fragments.OpenAccount;
+package com.learnings.myapps.azure.main.fragments.openAccount;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.learnings.myapps.azure.entity.Account;
 import com.learnings.myapps.azure.entity.Bank;
 import com.learnings.myapps.azure.entity.BankOffer;
-import com.learnings.myapps.azure.main.fragments.DatePickerFragment;
 import com.learnings.myapps.azure.R;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
@@ -32,8 +31,9 @@ import java.util.List;
 
 public class OpenFragment extends Fragment {
 
-    private ArrayList<String> banks = new ArrayList<>();
-    private ArrayList<String> offers = new ArrayList<>();
+    private List<BankOffer> offers;
+    private ArrayList<String> bank_names = new ArrayList<>();
+    private ArrayList<String> offer_names = new ArrayList<>();
     private ArrayAdapter<String> banks_adapter;
     private ArrayAdapter<String> offers_adapter;
     private String cur_bank_id;
@@ -61,7 +61,7 @@ public class OpenFragment extends Fragment {
         getActivity().setTitle("Open a deposit");
 
         final Spinner banks_spinner = (Spinner) v.findViewById(R.id.spinner);
-        banks_adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, banks);
+        banks_adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, bank_names);
         banks_spinner.setAdapter(banks_adapter);
         banks_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -80,7 +80,7 @@ public class OpenFragment extends Fragment {
         LoadBanks();
 
         final Spinner offers_spinner = (Spinner) v.findViewById(R.id.spinner2);
-        offers_adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, offers);
+        offers_adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, offer_names);
         offers_spinner.setAdapter(offers_adapter);
         offers_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -110,20 +110,58 @@ public class OpenFragment extends Fragment {
         });
         final EditText dateFrom = (EditText) v.findViewById(R.id.editText3);
         final EditText et_term = (EditText) v.findViewById(R.id.editText4);
+        final EditText et_holder = (EditText) v.findViewById(R.id.editText9);
+        final EditText et_notice = (EditText) v.findViewById(R.id.editText10);
 
         final Button btn_ok = (Button) v.findViewById(R.id.button6);
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar c = Calendar.getInstance();
-                String[] date1 = dateFrom.getText().toString().split("\\.");
-                c.set(Integer.valueOf(date1[2]), Integer.valueOf(date1[1])-1, Integer.valueOf(date1[0]));
-                Date date_from = c.getTime();
 
-                int term = Integer.valueOf(et_term.getText().toString());
+                Date date_from;
+                int term;
+                int start;
+                String holder = et_holder.getText().toString();
+                String notice = et_notice.getText().toString();
 
-                InsertIntoAccount(mEmail, cur_bank_id, cur_offer_id, Integer.valueOf(startamount.getText().toString()),
-                        date_from, term);
+                if (!et_term.getText().toString().equals("") && !startamount.getText().toString().equals("")) {
+                    term = Integer.valueOf(et_term.getText().toString());
+                    start = Integer.valueOf(startamount.getText().toString());
+
+                    int cur_minSumm = 1;
+                    //if (offers != null) {
+                        for (BankOffer offer : offers) {
+                            if (offer.id.equals(cur_offer_id)) {
+                                cur_minSumm = offer.getMinStartFunds();
+                                break;
+                            }
+                        }
+                    //}
+
+                    if ( !dateFrom.getText().toString().equals("")
+                            && !holder.equals("")
+                            && !cur_bank_id.equals("")
+                            && !cur_offer_id.equals("")
+                            && term > 0) {
+                        if (start > cur_minSumm) {
+                            String[] date1 = dateFrom.getText().toString().split("\\.");
+                            c.set(Integer.valueOf(date1[2]), Integer.valueOf(date1[1]) - 1, Integer.valueOf(date1[0]));
+                            date_from = c.getTime();
+
+                            InsertIntoAccount(mEmail, cur_bank_id, cur_offer_id, start, holder, notice,
+                                    date_from, term);
+                        }
+                        else
+                            Toast.makeText(getContext(), "Start summ is less than minimal summ of this offer", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(getContext(), "Fields have incorrect values", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(getContext(), "Fields have incorrect values", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return v;
@@ -181,9 +219,9 @@ public class OpenFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            banks.clear();
+                            bank_names.clear();
                             for (Bank bank : response) {
-                                banks.add(bank.getBankName());
+                                bank_names.add(bank.getBankName());
                             }
                             banks_adapter.notifyDataSetChanged();
                         }
@@ -209,15 +247,20 @@ public class OpenFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            offers.clear();
+                            offer_names.clear();
                             if (response.size() > 0) {
                                 for (BankOffer offer : response) {
-                                    offers.add(offer.getOfferName());
+                                    offer_names.add(offer.getOfferName());
                                 }
                                 offers_adapter.notifyDataSetChanged();
+                                offers = response;
                             }
-                            else
-                                Toast.makeText(getContext(), "Unfortunately at the moment this bank has no offers on deposits", Toast.LENGTH_SHORT).show();
+                            else {
+                                Toast.makeText(getContext(), "Unfortunately at the moment this bank has no offers of deposits", Toast.LENGTH_SHORT).show();
+                                cur_offer_id = "";
+                                offer_names.clear();
+                                offers_adapter.notifyDataSetChanged();
+                            }
                         }
                     });
                 } catch (Exception exception) {
@@ -229,12 +272,15 @@ public class OpenFragment extends Fragment {
     }
 
     private void InsertIntoAccount(String id_login, String id_bank, String id_bankoffer, Integer startfunds,
+                                   String holder, String notice,
                                    Date dateFrom, int term) {
         Account item = new Account();
         item.setLoginRefRecId(id_login);
         item.setBankRefRecID(id_bank);
         item.setBankOfferRefRecId(id_bankoffer);
         item.setStartFunds(startfunds);
+        item.setHolderName(holder);
+        item.setNotice(notice);
         item.setDateFrom(dateFrom);
         item.setDepositTermMonth(term);
 
