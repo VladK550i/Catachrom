@@ -52,6 +52,9 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
     private float blueSpan = 80;
     private float greenSpan = 15;
     private float yellowSpan;
+    public float getYellowSpan() {
+        return yellowSpan;
+    }
     public void setYellowSpan(float new_yellowSpan) {
 
         this.greenSpan = (yellowSpan < 1? greenSpan - new_yellowSpan
@@ -255,6 +258,14 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
 
 
         tv_total.setText("Result summ: " + indexes[FULLSUMM]);
+    }
+
+    public void HideTax() {
+        this.greenSpan = greenSpan + yellowSpan;
+        this.yellowSpan = -1;
+        tv_total.setText("Result summ: " + totalSpan);
+
+        initDataToSeekbar();
     }
 
     public void ShowInputFragment() {
