@@ -38,7 +38,7 @@
         android:layout_alignParentStart="true"
         android:textSize="22sp" />
 
-    <com.learnings.myapps.azure.main.fragments.deposits.customProgressBar.CustomSeekBar
+    <com.learnings.myapps.azure.customProgressBar.CustomSeekBar
         android:id="@+id/customSeekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,8 +87,6 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/textView8"
-            android:layout_alignParentStart="true"
             android:layout_weight="1">
 
             <TextView

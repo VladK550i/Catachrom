@@ -14,7 +14,7 @@ public final class DepositProcess {
         throw new AssertionError();
     }
     //private static int myStaticMember;
-    public static Float[] GetSimpleAccomulated(float startFunds, float interestRate, int depositDuration) {
+    public static Float[] GetSimpleAccumulated(float startFunds, float interestRate, int depositDuration) {
         float profit, fullsumm, percent;
         Float[] result = new Float[3];
 
@@ -28,7 +28,7 @@ public final class DepositProcess {
     }
 
 
-    public static Float[] GetComplexAccomulated(float startFunds, float interestRate, int depositDuration, String interestTerm) { //DepositDuretion in Days !!!!
+    public static Float[] GetComplexAccumulated(float startFunds, float interestRate, int depositDuration, String interestTerm) { //DepositDuretion in Days !!!!
             //difficult percent
 
             Float[] result = new Float[3];

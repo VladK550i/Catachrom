@@ -176,7 +176,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:text="Deposit term:"
+                        android:text="Deposit term (months):"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView4"

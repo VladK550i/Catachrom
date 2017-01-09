@@ -15,8 +15,8 @@ import com.learnings.myapps.azure.DataTransfer;
 import com.learnings.myapps.azure.entity.Account;
 import com.learnings.myapps.azure.entity.Bank;
 import com.learnings.myapps.azure.entity.BankOffer;
-import com.learnings.myapps.azure.main.fragments.deposits.customProgressBar.CustomSeekBar;
-import com.learnings.myapps.azure.main.fragments.deposits.customProgressBar.ProgressItem;
+import com.learnings.myapps.azure.customProgressBar.CustomSeekBar;
+import com.learnings.myapps.azure.customProgressBar.ProgressItem;
 import com.learnings.myapps.azure.R;
 import com.learnings.myapps.azure.main.fragments.processingModules.DepositProcess;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
@@ -240,11 +240,11 @@ public class DepositInfoActivity extends AppCompatActivity implements DataTransf
     private void CalculatePercents() {
         Float[] indexes;
         if (current_offer.getCapitalize().equals("no"))
-            indexes = DepositProcess.GetSimpleAccomulated(current_account.getStartFunds(),
+            indexes = DepositProcess.GetSimpleAccumulated(current_account.getStartFunds(),
                                                           current_offer.getInterestRate(),
                                                           current_account.getDepositTermMonth()*30);
         else
-            indexes = DepositProcess.GetComplexAccomulated(current_account.getStartFunds(),
+            indexes = DepositProcess.GetComplexAccumulated(current_account.getStartFunds(),
                                                                 current_offer.getInterestRate(),
                                                                 current_account.getDepositTermMonth()*30,
                                                                 current_offer.getInterestPeriodicity());

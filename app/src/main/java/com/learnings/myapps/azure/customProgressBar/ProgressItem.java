@@ -1,4 +1,4 @@
-package com.learnings.myapps.azure.main.fragments.deposits.customProgressBar;
+package com.learnings.myapps.azure.customProgressBar;
 
 
 public class ProgressItem {
